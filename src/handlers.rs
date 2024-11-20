@@ -1,6 +1,9 @@
-use axum::response::IntoResponse;
+use axum::{response::IntoResponse, Form};
 
-use crate::templates::{TodoItem, TodoList, TodoPage};
+use crate::{
+    model::PostTodoItem,
+    templates::{TodoItem, TodoItemCreated, TodoList, TodoPage},
+};
 
 pub async fn get_todos() -> impl IntoResponse {
     let todos = vec![
@@ -15,6 +18,13 @@ pub async fn get_todos() -> impl IntoResponse {
     ];
 
     TodoList { todos }
+}
+
+pub async fn post_todo(Form(todo): Form<PostTodoItem>) -> impl IntoResponse {
+    TodoItemCreated {
+        name: todo.name,
+        due_date: todo.due_date,
+    }
 }
 
 pub async fn handler() -> impl IntoResponse {

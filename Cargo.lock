@@ -660,6 +660,7 @@ dependencies = [
  "askama",
  "askama_axum",
  "axum",
+ "serde",
  "tokio",
 ]
 

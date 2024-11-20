@@ -16,6 +16,14 @@ pub struct TodoItem<'a> {
 }
 
 #[derive(Template)] // this will generate the code...
+#[template(path = "todo_item_created.html")] // using the template in this path, relative
+#[derive(Debug)]
+pub struct TodoItemCreated {
+    pub name: String,
+    pub due_date: String,
+}
+
+#[derive(Template)] // this will generate the code...
 #[template(path = "todo_list.html")] // using the template in this path, relative
 pub struct TodoList<'a> {
     pub todos: Vec<TodoItem<'a>>,
