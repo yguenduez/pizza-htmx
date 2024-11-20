@@ -1,8 +1,8 @@
 use axum::response::IntoResponse;
 
-use crate::templates::{HelloTemplate, TodoItem};
+use crate::templates::{TodoItem, TodoList, TodoPage};
 
-pub async fn handler() -> impl IntoResponse {
+pub async fn get_todos() -> impl IntoResponse {
     let todos = vec![
         TodoItem {
             name: "Küche putzen",
@@ -13,8 +13,10 @@ pub async fn handler() -> impl IntoResponse {
             due_date: "Mittwoch",
         },
     ];
-    HelloTemplate {
-        name: "Hans",
-        current_list: todos,
-    }
+
+    TodoList { todos }
+}
+
+pub async fn handler() -> impl IntoResponse {
+    TodoPage { name: "Hans" }
 }

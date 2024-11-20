@@ -1,9 +1,3 @@
-{% extends "base.html" %} {% block title %}Todo-List{% endblock %} {% block head
-%}
-<style></style>
-{% endblock %} {% block content %}
-<h1>Todo-List</h1>
 <ul>
-    {% for number in current_list %} {% include "todo_item.html"%}{%endfor%}
+    {% for number in todos %} {% include "todo_item.html"%}{%endfor%}
 </ul>
-{% endblock %}

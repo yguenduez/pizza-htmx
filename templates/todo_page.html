@@ -1,0 +1,7 @@
+{% extends "base.html" %} {% block title %}Todo-List{% endblock %} {% block head
+%}
+<style></style>
+{% endblock %} {% block content %}
+<h1>Todo-List of {{name}}</h1>
+<div hx-get="/todos" hx-trigger="load" hx-swap="innerHTML">[No Todos!]</div>
+{% endblock %}
