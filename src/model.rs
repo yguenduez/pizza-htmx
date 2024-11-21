@@ -1,6 +1,5 @@
 use serde::{Deserialize, Serialize};
 use std::fmt::{Display, Formatter};
-use std::str::FromStr;
 
 #[derive(Deserialize)]
 pub struct PostPizzaItem {

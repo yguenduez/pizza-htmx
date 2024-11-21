@@ -1,5 +1,5 @@
 use crate::model::{PizzaItem, PizzaType};
-use sqlx::{SqliteConnection, SqlitePool};
+use sqlx::SqlitePool;
 
 #[derive(Clone)]
 pub struct SqliteAdapter {
@@ -28,5 +28,12 @@ impl SqliteAdapter {
             .fetch_all(&self.pool)
             .await
             .unwrap()
+    }
+
+    pub async fn delete_pizza(&self, id: i64) {
+        sqlx::query!("DELETE FROM pizzas WHERE id = $1", id)
+            .execute(&self.pool)
+            .await
+            .unwrap();
     }
 }

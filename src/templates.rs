@@ -5,7 +5,7 @@ use askama::Template;
 
 #[derive(Template)] // this will generate the code...
 #[template(path = "pizza_page.html")] // using the template in this path, relative
-pub struct TodoPage<'a> {
+pub struct PizzaPage<'a> {
     // the name of the struct can be anything
     pub name: &'a str, // the field name should match the variable name
 }
@@ -45,7 +45,7 @@ pub struct PizzaListOwned {
     pub pizzas: Vec<PizzaItemOwned>,
 }
 
-impl<'a> Display for PizzaItem<'a> {
+impl Display for PizzaItem<'_> {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         write!(f, "{} | {}", self.name, self.pizza_type)
     }
