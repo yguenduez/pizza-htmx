@@ -4,7 +4,7 @@ use crate::model;
 use askama::Template;
 
 #[derive(Template)] // this will generate the code...
-#[template(path = "todo_page.html")] // using the template in this path, relative
+#[template(path = "pizza_page.html")] // using the template in this path, relative
 pub struct TodoPage<'a> {
     // the name of the struct can be anything
     pub name: &'a str, // the field name should match the variable name
@@ -26,7 +26,7 @@ impl From<model::PizzaItem> for PizzaItemOwned {
 }
 
 #[derive(Template)] // this will generate the code...
-#[template(path = "todo_item_created.html")] // using the template in this path, relative
+#[template(path = "pizza_item_created.html")] // using the template in this path, relative
 #[derive(Debug)]
 pub struct PizzaItemOwned {
     pub name: String,
@@ -34,13 +34,13 @@ pub struct PizzaItemOwned {
 }
 
 #[derive(Template)] // this will generate the code...
-#[template(path = "todo_list.html")] // using the template in this path, relative
+#[template(path = "pizza_list.html")] // using the template in this path, relative
 pub struct PizzaList<'a> {
     pub pizzas: Vec<PizzaItem<'a>>,
 }
 
 #[derive(Template)] // this will generate the code...
-#[template(path = "todo_list.html")] // using the template in this path, relative
+#[template(path = "pizza_list.html")] // using the template in this path, relative
 pub struct PizzaListOwned {
     pub pizzas: Vec<PizzaItemOwned>,
 }
