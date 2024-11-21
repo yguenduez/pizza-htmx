@@ -1,33 +1,34 @@
-use axum::{response::IntoResponse, Form};
-
-use crate::templates::PizzaItemOwned;
+use crate::model::PizzaType;
+use crate::pizza_storage::SqliteAdapter;
+use crate::templates::{PizzaItemOwned, PizzaListOwned};
 use crate::{
     model::PostPizzaItem,
     templates::{PizzaItem, PizzaList, TodoPage},
 };
+use axum::extract::State;
+use axum::{response::IntoResponse, Form};
 
-pub async fn get_todos() -> impl IntoResponse {
-    let todos = vec![
-        PizzaItem {
-            name: "Bernd",
-            pizza_type: "Vegi",
-        },
-        PizzaItem {
-            name: "Hans",
-            pizza_type: "Meaty",
-        },
-    ];
-
-    PizzaList { pizzas: todos }
+pub async fn get_pizzas(State(pizza_store): State<SqliteAdapter>) -> impl IntoResponse {
+    let pizzas = pizza_store
+        .get_pizzas()
+        .await
+        .into_iter()
+        .map(PizzaItemOwned::from)
+        .collect();
+    PizzaListOwned { pizzas }
 }
 
-pub async fn post_todo(Form(todo): Form<PostPizzaItem>) -> impl IntoResponse {
-    PizzaItemOwned {
-        name: todo.name,
-        pizza_type: todo.pizza_type,
-    }
+pub async fn post_pizza(
+    State(pizza_store): State<SqliteAdapter>,
+    Form(todo): Form<PostPizzaItem>,
+) -> impl IntoResponse {
+    let pizza_type = PizzaType::from(todo.pizza_type);
+    let inserted_pizza = pizza_store.insert_pizza(todo.name, pizza_type).await;
+
+    let owned_pizza: PizzaItemOwned = inserted_pizza.into();
+    owned_pizza
 }
 
-pub async fn handler() -> impl IntoResponse {
+pub async fn main_page() -> impl IntoResponse {
     TodoPage { name: "Hans" }
 }

@@ -3,16 +3,16 @@
 <style></style>
 {% endblock %} {% block content %}
 <h1>Todo-List of {{name}}</h1>
-<div hx-get="/todos" hx-trigger="load" hx-swap="innerHTML">[No Todos!]</div>
-<form id="myForm" hx-post="/todos" hx-target="#todos" hx-swap="beforeend">
+<div hx-get="/pizzas" hx-trigger="load" hx-swap="innerHTML">[No Todos!]</div>
+<form id="myForm" hx-post="/pizzas" hx-target="#pizzas" hx-swap="beforeend">
     <label for="name">Name:</label>
     <input type="text" id="name" name="name" required/>
 
     <label for="pizza_type">Pizza Type:</label>
     <select id="pizza_type" name="pizza_type" required>
-        <option value="vegan">Vegan</option>
-        <option value="meaty">Meaty</option>
-        <option value="vegi">Vegiterian</option>
+        <option value="Vegan">Vegan</option>
+        <option value="Meat">Meat</option>
+        <option value="Vegitarian">Vegiterian</option>
     </select>
 
     <button type="submit">Submit</button>

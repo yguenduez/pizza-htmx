@@ -1,5 +1,6 @@
 use std::fmt::Display;
 
+use crate::model;
 use askama::Template;
 
 #[derive(Template)] // this will generate the code...
@@ -15,6 +16,15 @@ pub struct PizzaItem<'a> {
     pub pizza_type: &'a str,
 }
 
+impl From<model::PizzaItem> for PizzaItemOwned {
+    fn from(value: model::PizzaItem) -> Self {
+        PizzaItemOwned {
+            name: value.name,
+            pizza_type: value.pizza_type.to_string(),
+        }
+    }
+}
+
 #[derive(Template)] // this will generate the code...
 #[template(path = "todo_item_created.html")] // using the template in this path, relative
 #[derive(Debug)]
@@ -27,6 +37,12 @@ pub struct PizzaItemOwned {
 #[template(path = "todo_list.html")] // using the template in this path, relative
 pub struct PizzaList<'a> {
     pub pizzas: Vec<PizzaItem<'a>>,
+}
+
+#[derive(Template)] // this will generate the code...
+#[template(path = "todo_list.html")] // using the template in this path, relative
+pub struct PizzaListOwned {
+    pub pizzas: Vec<PizzaItemOwned>,
 }
 
 impl<'a> Display for PizzaItem<'a> {
