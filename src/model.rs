@@ -1,7 +1,18 @@
 use serde::Deserialize;
 
 #[derive(Deserialize)]
-pub struct PostTodoItem {
+pub struct PostPizzaItem {
     pub name: String,
-    pub due_date: String,
+    pub pizza_type: String,
+}
+
+enum PizzaType {
+    Vegi,
+    Meat,
+    Vegan,
+}
+
+pub struct PizzaItem {
+    name: String,
+    pizza_type: PizzaType,
 }

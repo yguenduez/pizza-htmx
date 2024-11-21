@@ -10,27 +10,27 @@ pub struct TodoPage<'a> {
 }
 
 #[derive(Debug)]
-pub struct TodoItem<'a> {
+pub struct PizzaItem<'a> {
     pub name: &'a str,
-    pub due_date: &'a str,
+    pub pizza_type: &'a str,
 }
 
 #[derive(Template)] // this will generate the code...
 #[template(path = "todo_item_created.html")] // using the template in this path, relative
 #[derive(Debug)]
-pub struct TodoItemCreated {
+pub struct PizzaItemOwned {
     pub name: String,
-    pub due_date: String,
+    pub pizza_type: String,
 }
 
 #[derive(Template)] // this will generate the code...
 #[template(path = "todo_list.html")] // using the template in this path, relative
-pub struct TodoList<'a> {
-    pub todos: Vec<TodoItem<'a>>,
+pub struct PizzaList<'a> {
+    pub pizzas: Vec<PizzaItem<'a>>,
 }
 
-impl<'a> Display for TodoItem<'a> {
+impl<'a> Display for PizzaItem<'a> {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "{} | {}", self.name, self.due_date)
+        write!(f, "{} | {}", self.name, self.pizza_type)
     }
 }

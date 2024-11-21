@@ -1,29 +1,30 @@
 use axum::{response::IntoResponse, Form};
 
+use crate::templates::PizzaItemOwned;
 use crate::{
-    model::PostTodoItem,
-    templates::{TodoItem, TodoItemCreated, TodoList, TodoPage},
+    model::PostPizzaItem,
+    templates::{PizzaItem, PizzaList, TodoPage},
 };
 
 pub async fn get_todos() -> impl IntoResponse {
     let todos = vec![
-        TodoItem {
-            name: "Küche putzen",
-            due_date: "Dienstag",
+        PizzaItem {
+            name: "Bernd",
+            pizza_type: "Vegi",
         },
-        TodoItem {
-            name: "Bad putzen",
-            due_date: "Mittwoch",
+        PizzaItem {
+            name: "Hans",
+            pizza_type: "Meaty",
         },
     ];
 
-    TodoList { todos }
+    PizzaList { pizzas: todos }
 }
 
-pub async fn post_todo(Form(todo): Form<PostTodoItem>) -> impl IntoResponse {
-    TodoItemCreated {
+pub async fn post_todo(Form(todo): Form<PostPizzaItem>) -> impl IntoResponse {
+    PizzaItemOwned {
         name: todo.name,
-        due_date: todo.due_date,
+        pizza_type: todo.pizza_type,
     }
 }
 

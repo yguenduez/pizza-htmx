@@ -6,10 +6,14 @@
 <div hx-get="/todos" hx-trigger="load" hx-swap="innerHTML">[No Todos!]</div>
 <form id="myForm" hx-post="/todos" hx-target="#todos" hx-swap="beforeend">
     <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required />
+    <input type="text" id="name" name="name" required/>
 
-    <label for="due_date">Due Date:</label>
-    <input type="text" id="due_date" name="due_date" required />
+    <label for="pizza_type">Pizza Type:</label>
+    <select id="pizza_type" name="pizza_type" required>
+        <option value="vegan">Vegan</option>
+        <option value="meaty">Meaty</option>
+        <option value="vegi">Vegiterian</option>
+    </select>
 
     <button type="submit">Submit</button>
 </form>
