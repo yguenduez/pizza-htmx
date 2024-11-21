@@ -36,19 +36,6 @@ impl From<String> for PizzaType {
     }
 }
 
-impl FromStr for PizzaType {
-    type Err = ();
-
-    fn from_str(s: &str) -> Result<Self, Self::Err> {
-        match s {
-            "Vegitarian" => Ok(PizzaType::Vegitarian),
-            "Meat" => Ok(PizzaType::Meat),
-            "Vegan" => Ok(PizzaType::Vegan),
-            _ => Err(()),
-        }
-    }
-}
-
 #[derive(Serialize)]
 pub struct PizzaItem {
     pub id: i64,
