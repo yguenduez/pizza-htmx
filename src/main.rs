@@ -14,6 +14,11 @@ use sqlx::SqlitePool;
 #[tokio::main]
 async fn main() {
     dotenv().ok();
+    let run_type = std::env::var("TYPE").unwrap();
+    let ip_address = match run_type.as_str() {
+        "prod" => std::env::var("SERVING_IP_PROD").unwrap(),
+        _ => std::env::var("SERVING_IP_DEV").unwrap(),
+    };
     let pool = SqlitePool::connect("sqlite:pizza.db").await.unwrap();
     let adapter = SqliteAdapter::new(pool);
     let app = Router::new()
@@ -23,7 +28,7 @@ async fn main() {
         .route("/health", get(health))
         .with_state(adapter);
 
-    let listener = tokio::net::TcpListener::bind("127.0.0.1:8080")
+    let listener = tokio::net::TcpListener::bind(format!("{}:8080", ip_address))
         .await
         .unwrap();
     println!("listening on {}", listener.local_addr().unwrap());
