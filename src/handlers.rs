@@ -16,6 +16,10 @@ pub async fn get_pizzas(State(pizza_store): State<SqliteAdapter>) -> impl IntoRe
     PizzaListOwned { pizzas }
 }
 
+pub async fn health() -> impl IntoResponse {
+    StatusCode::OK
+}
+
 pub async fn delete_pizza(
     State(pizza_store): State<SqliteAdapter>,
     Path(id): Path<i64>,
