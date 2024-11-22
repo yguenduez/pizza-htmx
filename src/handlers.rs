@@ -1,4 +1,4 @@
-use crate::model::{PizzaItem, PizzaType};
+use crate::model::PizzaType;
 use crate::pizza_storage::SqliteAdapter;
 use crate::templates::{PizzaCount, PizzaItemOwned, PizzaListOwned};
 use crate::{model::PostPizzaItem, templates::PizzaPage};
@@ -52,11 +52,9 @@ pub async fn pizza_count(State(pizza_store): State<SqliteAdapter>) -> impl IntoR
             });
 
     PizzaCount {
-        vegan_count: *pizzas_count.get(&PizzaType::Vegan).unwrap_or_else(|| &0u64),
-        vegi_count: *pizzas_count
-            .get(&PizzaType::Vegitarian)
-            .unwrap_or_else(|| &0u64),
-        meat_count: *pizzas_count.get(&PizzaType::Meat).unwrap_or_else(|| &0u64),
+        vegan_count: *pizzas_count.get(&PizzaType::Vegan).unwrap_or(&0u64),
+        vegi_count: *pizzas_count.get(&PizzaType::Vegitarian).unwrap_or(&0u64),
+        meat_count: *pizzas_count.get(&PizzaType::Meat).unwrap_or(&0u64),
     }
 }
 
