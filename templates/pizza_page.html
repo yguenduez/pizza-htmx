@@ -2,7 +2,7 @@
 %}
 <style></style>
 {% endblock %} {% block content %}
-<h1>Todo-List of {{name}}</h1>
+<h1>Pizza List of Rust-Basel</h1>
 <div hx-get="/pizzas" hx-trigger="load" hx-swap="innerHTML">[No Todos!]</div>
 <form id="myForm" hx-post="/pizzas" hx-target="#pizzas" hx-swap="beforeend">
     <label for="name">Name:</label>
@@ -17,7 +17,6 @@
 
     <button type="submit">Submit</button>
 </form>
-<div hx-get="/pizza-count" hx-swap="innerHTML" hx-trigger="every 2s">
-
+<div hx-get="/pizza-count" hx-swap="innerHTML" hx-trigger="load, every 2s">
 </div>
 {% endblock %}

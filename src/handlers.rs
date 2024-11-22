@@ -59,5 +59,5 @@ pub async fn pizza_count(State(pizza_store): State<SqliteAdapter>) -> impl IntoR
 }
 
 pub async fn main_page() -> impl IntoResponse {
-    PizzaPage { name: "Hans" }
+    PizzaPage {}
 }

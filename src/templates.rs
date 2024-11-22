@@ -3,12 +3,9 @@ use std::fmt::Display;
 use crate::model;
 use askama::Template;
 
-#[derive(Template)] // this will generate the code...
-#[template(path = "pizza_page.html")] // using the template in this path, relative
-pub struct PizzaPage<'a> {
-    // the name of the struct can be anything
-    pub name: &'a str, // the field name should match the variable name
-}
+#[derive(Template)]
+#[template(path = "pizza_page.html")]
+pub struct PizzaPage {}
 
 #[derive(Debug)]
 pub struct PizzaItem<'a> {
