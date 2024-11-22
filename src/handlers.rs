@@ -26,7 +26,6 @@ pub async fn delete_pizza(
     Path(id): Path<i64>,
 ) -> impl IntoResponse {
     pizza_store.delete_pizza(id).await;
-
     StatusCode::NO_CONTENT
 }
 

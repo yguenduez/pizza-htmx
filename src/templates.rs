@@ -9,6 +9,7 @@ pub struct PizzaPage {}
 
 #[derive(Debug)]
 pub struct PizzaItem<'a> {
+    pub id: i64,
     pub name: &'a str,
     pub pizza_type: &'a str,
 }
@@ -24,6 +25,7 @@ pub struct PizzaCount {
 impl From<model::PizzaItem> for PizzaItemOwned {
     fn from(value: model::PizzaItem) -> Self {
         PizzaItemOwned {
+            id: value.id,
             name: value.name,
             pizza_type: value.pizza_type.to_string(),
         }
@@ -34,6 +36,7 @@ impl From<model::PizzaItem> for PizzaItemOwned {
 #[template(path = "pizza_item_created.html")] // using the template in this path, relative
 #[derive(Debug)]
 pub struct PizzaItemOwned {
+    pub id: i64,
     pub name: String,
     pub pizza_type: String,
 }
