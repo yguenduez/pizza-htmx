@@ -16,6 +16,14 @@ pub struct PizzaItem<'a> {
     pub pizza_type: &'a str,
 }
 
+#[derive(Template)]
+#[template(path = "pizza_totalize.html")]
+pub struct PizzaCount {
+    pub vegan_count: u64,
+    pub vegi_count: u64,
+    pub meat_count: u64,
+}
+
 impl From<model::PizzaItem> for PizzaItemOwned {
     fn from(value: model::PizzaItem) -> Self {
         PizzaItemOwned {

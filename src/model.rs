@@ -7,7 +7,7 @@ pub struct PostPizzaItem {
     pub pizza_type: String,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone, Hash, Eq, PartialEq)]
 pub enum PizzaType {
     Vegitarian,
     Meat,

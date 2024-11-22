@@ -3,7 +3,7 @@ mod model;
 mod pizza_storage;
 mod templates;
 
-use crate::handlers::{delete_pizza, health};
+use crate::handlers::{delete_pizza, health, pizza_count};
 use crate::pizza_storage::SqliteAdapter;
 use axum::routing::delete;
 use axum::{routing::get, Router};
@@ -26,6 +26,7 @@ async fn main() {
         .route("/pizzas", get(get_pizzas).post(post_pizza))
         .route("/pizzas/:id", delete(delete_pizza))
         .route("/health", get(health))
+        .route("/pizza-count", get(pizza_count))
         .with_state(adapter);
 
     let listener = tokio::net::TcpListener::bind(format!("{}:8080", ip_address))
