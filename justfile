@@ -10,5 +10,5 @@ deploy:
     ssh -i ~/.ssh/hetzner root@{{ server }} "mkdir -p {{ path }}"
     scp -i ~/.ssh/hetzner -r . root@{{ server }}:{{ path }}
 
-run_remote:
-    ssh -i ~/.ssh/hetzner "cd {{ path }} && cargo run --release"
+build_remote:
+    ssh -i ~/.ssh/hetzner root@{{ server }} "cd {{ path }} && cargo build --release"

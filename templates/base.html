@@ -1,19 +1,29 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <title>{% block title %}{{ title }} - My Site{% endblock %}</title>
-        <script
+<head>
+    <title>{% block title %}{{ title }} - Pizza Lovers{% endblock %}</title>
+    <script
             src="https://unpkg.com/htmx.org@2.0.3"
             integrity="sha384-0895/pl2MU10Hqc6jd4RvrthNlDiE9U1tWmX7WRESftEDRosgxNsQG/Ze9YMRzHq"
             crossorigin="anonymous"
-        ></script>
-        {% block head %}{% endblock %}
-    </head>
-    <body>
-        <div id="content">
-            {% block content %}
-            <p>Placeholder content</p>
-            {% endblock %}
-        </div>
-    </body>
+    ></script>
+    {% block head %}{% endblock %}
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    >
+    <style>
+        li {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+<div id="content">
+    {% block content %}
+    <p>Placeholder content</p>
+    {% endblock %}
+</div>
+</body>
 </html>

@@ -1,5 +1,7 @@
 <li id="item-{{id}}">
-    <div>{{name}}</div>
-    <div>{{pizza_type}}</div>
+    <div style="width: 200px">
+        <div>{{name}}</div>
+        <div>{{pizza_type}}</div>
+    </div>
     <button hx-post="/remove/pizzas/{{id}}" hx-target="#item-{{id}}" hx-swap="outerHTML">Delete</button>
 </li>
