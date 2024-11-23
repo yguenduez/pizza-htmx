@@ -3,9 +3,9 @@ mod model;
 mod pizza_storage;
 mod templates;
 
-use crate::handlers::{delete_pizza, health, pizza_count};
+use crate::handlers::{delete_pizza, delete_pizza_empty, health, pizza_count};
 use crate::pizza_storage::SqliteAdapter;
-use axum::routing::delete;
+use axum::routing::{delete, post};
 use axum::{routing::get, Router};
 use dotenvy::dotenv;
 use handlers::{get_pizzas, main_page, post_pizza};
@@ -24,6 +24,7 @@ async fn main() {
     let app = Router::new()
         .route("/", get(main_page))
         .route("/pizzas", get(get_pizzas).post(post_pizza))
+        .route("/remove/pizzas/:id", post(delete_pizza_empty))
         .route("/pizzas/:id", delete(delete_pizza))
         .route("/health", get(health))
         .route("/pizza-count", get(pizza_count))

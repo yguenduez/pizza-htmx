@@ -15,6 +15,10 @@ pub struct PizzaItem<'a> {
 }
 
 #[derive(Template)]
+#[template(path = "empty.html")]
+pub struct EmptyDiv {}
+
+#[derive(Template)]
 #[template(path = "pizza_totalize.html")]
 pub struct PizzaCount {
     pub vegan_count: u64,

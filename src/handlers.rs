@@ -1,6 +1,6 @@
 use crate::model::PizzaType;
 use crate::pizza_storage::SqliteAdapter;
-use crate::templates::{PizzaCount, PizzaItemOwned, PizzaListOwned};
+use crate::templates::{EmptyDiv, PizzaCount, PizzaItemOwned, PizzaListOwned};
 use crate::{model::PostPizzaItem, templates::PizzaPage};
 use axum::extract::{Path, State};
 use axum::http::StatusCode;
@@ -27,6 +27,14 @@ pub async fn delete_pizza(
 ) -> impl IntoResponse {
     pizza_store.delete_pizza(id).await;
     StatusCode::NO_CONTENT
+}
+pub async fn delete_pizza_empty(
+    State(pizza_store): State<SqliteAdapter>,
+    Path(id): Path<i64>,
+) -> impl IntoResponse {
+    pizza_store.delete_pizza(id).await;
+
+    EmptyDiv {}
 }
 
 pub async fn post_pizza(
